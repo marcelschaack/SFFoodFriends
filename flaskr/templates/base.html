@@ -1,0 +1,19 @@
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+<title>{% block title %}{% endblock %} - SF Food Friends Volunteer To Request Matching</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1><a href="http://www.sffoodfriends.com">SF Food Friends</a></h1>
+  <ul>
+    <li><span>{{'A person in need will be assigned to you here'}}</span>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>

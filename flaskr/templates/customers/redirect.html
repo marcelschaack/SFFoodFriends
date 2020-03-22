@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{message_one}}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+  {{message_two}}
+    </div>
+<form method="post">
+    <input type="submit" value="Ok">
+  </form>
+{% endblock %}
