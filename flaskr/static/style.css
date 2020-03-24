@@ -1,18 +1,18 @@
-html { font-family: sans-serif; background: #eee; padding: 1rem; }
-body { max-width: 960px; margin: 0 auto; background: white; }
-h1 { font-family: serif; color: #377ba8; margin: 1rem 0; }
-a { color: #377ba8; }
-hr { border: none; border-top: 1px solid lightgray; }
-nav { background: lightgray; display: flex; align-items: center; padding: 0 0.5rem; }
-nav h1 { flex: auto; margin: 0; }
-nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
+html { font-family: Verdana, Geneva, sans-serif; background: #eee; padding: 1rem; }
+body { max-width: None; margin: 0 auto; background: white; }
+h1 { font-family: Verdana, Geneva, sans-serif; color: #000000; margin: 1rem 0; font-weight: lighter;}
+a { color: #000000; }
+hr { border: none; border-top: 2px solid white; }
+nav { background: white; display: flex; align-items: center; padding: 0.5 0.5rem; }
+nav h1 { flex: auto; margin: 0; font-weight: lighter;}
+nav h1 a { text-decoration: none; padding: 2rem 0.5rem; font-size: 30px;}
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content { padding: 0 1rem 1rem; }
-.content > header { border-bottom: 1px solid lightgray; display: flex; align-items: flex-end; }
+.content > header { border-bottom: 1px solid white; display: flex; align-items: flex-end; font-weight: lighter;}
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash { margin: 1em 0; padding: 1em; background: #cae6f6; border: 1px solid #377ba8; }
-.post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
+.post > header { display: flex; align-items: flex-end; font-size: 0.85em; font-weight: 200;}
 .post > header > div:first-of-type { flex: auto; }
 .post > header h1 { font-size: 1.5em; margin-bottom: 0; }
 .post .about { color: slategray; font-style: italic; }
@@ -20,10 +20,10 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content:last-child { margin-bottom: 0; }
 .content form { margin: 1em 0; display: flex; flex-direction: column; }
 .content label { font-weight: bold; margin-bottom: 0.5em; }
-.content input, .content textarea { margin-bottom: 1em; }
+.content input, .content textarea { width: 40%; margin-bottom: 1em; border: none; border-bottom: 2px solid black; }
 .content textarea { min-height: 12em; resize: vertical; }
 input.danger { color: #cc2f2e; }
-input[type=submit] { align-self: start; min-width: 10em; }
+input[type=submit] { background-color: #000000; width: 10%; height: 2em; align-self: start; min-width: 10em; border-bottom: none; border-radius: 200px; color:#ffffff; }
 
 
 

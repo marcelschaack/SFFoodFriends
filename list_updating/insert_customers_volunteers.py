@@ -14,26 +14,31 @@ with open('list_updating/customers.csv') as csvfile:
         neighborhood = row[0]
         email = row[1]
         phone = row[2]
-        type_of_assistance = row[3]
         if row[4] == 'Phone':
             preference = 0
         else:
             preference = 1
+        type_of_assistance = row[3]
         payment = 1
         served = 0
 
         if db.execute(
-            'SELECT id FROM customers WHERE email = ?', (email,)
+            'SELECT id FROM customer WHERE (email = ? AND served = ?)', (email,0,)
         ).fetchone() is None:
             db.execute(
-                'INSERT INTO customers (neighborhood, email, phone, type_of_assistance, preference, payment, served) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?)',
-                (neighborhood, email, phone, type_of_assistance, preference, payment, served)
+                'INSERT INTO customer (neighborhood, email, phone, preference, assistancetype, payment, served) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                (neighborhood, email, phone, preference, type_of_assistance, payment, served)
             )
+
             connection.commit()
 
+        else:
+            print('Customer %s still has an outstanding request!' % email)
 
-with open('list_updating/volunteers.csv') as csvfile:
+
+
+
+with open('list_updating/volunteers.csv', 'r') as csvfile:
     csvdata = csv.reader(csvfile)
     next(csvdata, None)
     for row in csvdata:
@@ -48,3 +53,8 @@ with open('list_updating/volunteers.csv') as csvfile:
                 (email, areas)
             )
             connection.commit()
+
+
+        else:
+            print('Volunteer %s has already signed up!' % email)
+connection.close()

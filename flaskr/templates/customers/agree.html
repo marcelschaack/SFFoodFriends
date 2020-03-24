@@ -5,9 +5,31 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    <div <pre> {{result}}</pre></div>
     {% if match == 1 %}
+    <div>
+    <table>
+  <tr>
+    <th>Type of Assistance Needed</th>
+    <th>{{result[0]}}</th>
+  </tr>
+  <tr>
+    <td>Neighborhood</td>
+    <td>{{result[1]}}</td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td>{{result[2]}}</td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td>{{result[3]}}</td>
+  </tr>
+  <tr>
+    <td>Contact Preference</td>
+    <td>{{result[4]}}</td>
+  </tr>
+    </table>
+</div>
     <form method="post">
         <div class="radio text-left">
             <label for="agree">Do you agree to help this person in need?</label><br>
@@ -16,5 +38,7 @@
             <input type="submit" value="Submit">
         </div>
     </form>
+    {% else %}
+    <div> {{result}}</div>
     {% endif %}
 {% endblock %}

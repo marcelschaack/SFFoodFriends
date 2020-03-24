@@ -1,3 +1,5 @@
-﻿neighborhood,email,phone,type_of_assistance, preference
-Hollywood,b@b.com,4564345,groceries,Phone
+neighborhood,email,phone,type_of_assistance, preference
+Hollywood,b@b.com,4564345,groceries,Email
 Bollywood,d@w.com,4564345,groceries,Phone
+Hollywood,d@b.com,4564345,groceries,Phone
+Bollywood,w@w.com,4564345,groceries,Phone

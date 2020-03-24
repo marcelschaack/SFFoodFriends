@@ -7,6 +7,11 @@ app = Flask(__name__)
 bp = Blueprint('customers', __name__)
 
 
+@bp.route('/')
+def start():
+    return redirect(url_for('customers.validate'))
+
+
 @bp.route('/<id>')
 def index(id):
     db = get_db()
@@ -28,7 +33,8 @@ def validate():
         ).fetchone()
 
         if volunteer is None:
-            error = 'Incorrect email.'
+            error = 'We do not have this email in our database.'
+            'Please sign up or contact us on the main website.'
 
         if error is None:
             areas = volunteer['areas']
@@ -39,6 +45,41 @@ def validate():
     return render_template('customers/validate.html')
 
 
+
+
+@bp.route('/new-request', methods=('GET', 'POST'))
+def new_request():
+    if request.method == 'POST':
+        email = request.form['email']
+        assistance_type = request.form['type']
+        db = get_db()
+        error = None
+        customer = db.execute(
+            'SELECT * FROM customer WHERE email = ?', (email,)
+        ).fetchone()
+
+        if customer is None:
+            error = 'We do not have this email in our database. Please sign up or contact us on the main website.'
+        elif customer['served'] == 0:
+            error = 'You still have an outstanding request in our database. If you want to ammend your existing request, inform your helper once he contacts you or wait for 3 days to submit a new request.'
+
+        if error is None:
+            db.execute(
+                'INSERT INTO customer (neighborhood, email, phone, preference, assistancetype, payment, served) VALUES (?, ?, ?, ?, ?, ?, ?)'
+                (customer['neighborhood'], customer['email'], customer['phone'], customer['preference'], assistance_type, customer['payment'], 0)
+            )
+            return redirect(url_for('customers.confirm'))
+
+        flash(error)
+
+    return render_template('customers/request.html')
+
+
+@bp.route('/confirm', methods=('GET', 'POST'))
+def confirm():
+    return render_template('customers/confirm.html')
+
+
 @bp.route('/match/<areas>', methods=['GET', 'POST'])
 def matching(areas):
     neighborhoods = areas.split('+')
@@ -46,17 +87,19 @@ def matching(areas):
 
     for neighborhood in neighborhoods:
         customer = db.execute(
-            'SELECT * FROM customers WHERE neighborhood = ?', (neighborhood,)
+            'SELECT * FROM customer WHERE neighborhood = ?', (neighborhood,)
         ).fetchone()
         if customer is not None:
             if customer['served'] == 0:
                 break
+            else:
+                customer = None
 
     if customer is None:
         result = 'Currently, there are no people in need in your areas. We really appreciate your help, thank you!!'
-        return render_template('customers/agree.html', result=result, hit="We didn't find a match for you", match=0)
+        return render_template('customers/agree.html', result=result, hit="We didn't find a match for you", match = 0)
 
-    type_of_assistance = customer['type_of_assistance']
+    type_of_assistance = customer['assistancetype']
     cust_neighborhood = customer['neighborhood']
     email = customer['email']
     phone = customer['phone']
@@ -65,8 +108,7 @@ def matching(areas):
         preference = 'Phone'
     else:
         preference = 'Email'
-    result = 'Type of assistance needed: ' + type_of_assistance + '; Neighborhood: ' + cust_neighborhood + '; Email: ' \
-             + email + '; Phone: ' + phone + '; preference: ' + preference
+    result = [type_of_assistance, cust_neighborhood, email, phone, preference]
 
     if request.method == 'POST':
         error = None
@@ -78,7 +120,7 @@ def matching(areas):
         if error is None:
             if agree == 1:
                 db.execute(
-                    'UPDATE customers SET served = ?'
+                    'UPDATE customer SET served = ?'
                     ' WHERE email = ?',
                     (agree, email)
                 )
@@ -91,7 +133,7 @@ def matching(areas):
     return render_template('customers/agree.html', result=result, hit='We found a match for you.', match=1)
 
 
-@bp.route('/direct/<agree>')
+@bp.route('/direct/<agree>', methods=['GET', 'POST'])
 def direct_to(agree):
     agree = int(agree)
     if agree == 1:
@@ -103,6 +145,6 @@ def direct_to(agree):
         message_two = 'You will now be redirected to the SF Food Friends home page.'
 
     if request.method == 'POST':
-        return redirect("http://www.sffoodfriends.com")
+        return redirect("https://sffoodfriends.wixsite.com/home")
 
     return render_template('customers/redirect.html', message_one=message_one, message_two=message_two)
