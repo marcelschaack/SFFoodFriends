@@ -1,0 +1,37 @@
+import geopy as gpy
+from geopy.geocoders import Nominatim
+# Importing the geodesic module from the library for distance measuring
+from geopy.distance import geodesic
+
+locator = Nominatim(user_agent = "SFFoodFriends") 
+if address is None:
+    location = locator.geocode(areas) # if the address was not inputted, use the neighborhood
+else:
+    location = locator.geocode(address) #if the address is imputted, use the address
+lat_lng = (location.latitude, location.longitude) # location must be tuple for distance function
+#write to CSV Lat-Long column
+criterion = 0.5 # Maximum distance in miles that the volunteer can be from the customer
+for i in range(len(customer['email'])): # for every customer in the database
+    if customer['served']==0:# for every customer in database that is not served        
+        for j in range(len(volunteer['email'])): #for ever volunteer in database that can help
+            dist = geodesic(customer['lat_lng'][i], volunteer.['lat_lng'][j]).miles # Calculate the distance between the volunteer and customer
+            if dist < criterion: #Check that the distance is within the maximum allowable distance
+                #MATCH function
+
+
+
+
+############# STOCK Code when I was figuring things out ############## 
+dist = geodesic(IHouse, Apartment).miles
+print(IHouse)
+print(Apartment)
+dist
+
+locator = Nominatim(user_agent = "SFFoodFriends")
+location = locator.geocode("2299 Piedmont Ave Berkeley ca")
+location2 = locator.geocode("2923 Otis St Berkeley ca")
+print(location.latitude, location.longitude)
+print(location2.latitude, location2.longitude)
+# print('Latitude = {}, Longitude = {}'.format(location.latitude, location.longitude))
+IHouse = (location.latitude,location.longitude)
+Apartment = (location2.latitude,location2.longitude)
