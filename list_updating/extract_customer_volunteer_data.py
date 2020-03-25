@@ -8,14 +8,14 @@ connection.row_factory = sqlite3.Row
 
 
 """Clear the existing data and create new tables."""
-data = db.execute("SELECT * FROM customers")
-data2 = db.execute("SELECT * FROM volunteer")
+data = db.execute("SELECT * FROM customer").fetchall()
+data2 = db.execute("SELECT * FROM volunteer").fetchall()
 with open('list_updating/results.csv', 'w') as f:
     writer = csv.writer(f)
-    writer.writerows(data2)
-    writer.writerow([' '])
     writer.writerows(data)
+    writer.writerow([' '])
+    writer.writerows(data2)
 
-with open('flaskr/schema.sql','r') as f:
+with open('flaskr/schema.sql') as f:
     db.executescript(f.read().decode('utf8'))
 connection.close()

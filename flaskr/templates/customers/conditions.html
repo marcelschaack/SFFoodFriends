@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}You must agree to the terms and conditions.{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div>Insert conditions here.
+    </div>
+
+<form method="post">
+    <div class="radio text-left">
+        <label for="agree">Do you agree to the conditions?</label><br>
+        <input type="radio" name="agree" id="agree" value="1"> Yes </input><br>
+        <input type="radio" name="agree" id="agree" value="2"> No </input><br>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+{% endblock %}

@@ -8,25 +8,29 @@
     {% if match == 1 %}
     <div>
     <table>
-  <tr>
-    <th>Type of Assistance Needed</th>
+    <tr>
+    <th>Name</th>
     <th>{{result[0]}}</th>
   </tr>
   <tr>
-    <td>Neighborhood</td>
-    <td>{{result[1]}}</td>
+    <th>Assistance Type Needed</th>
+    <th>{{result[1]}}</th>
   </tr>
   <tr>
-    <td>Email</td>
+    <td>Neighborhood</td>
     <td>{{result[2]}}</td>
   </tr>
   <tr>
-    <td>Phone</td>
+    <td>Email</td>
     <td>{{result[3]}}</td>
   </tr>
   <tr>
-    <td>Contact Preference</td>
+    <td>Phone</td>
     <td>{{result[4]}}</td>
+  </tr>
+  <tr>
+    <td>Contact Preference</td>
+    <td>{{result[5]}}</td>
   </tr>
     </table>
 </div>

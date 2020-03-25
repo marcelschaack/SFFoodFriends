@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1a6be1f-f5bf-4336-8cca-0863d7d1cc8d" name="Default Changelist" comment="" />
+    <list default="true" id="c1a6be1f-f5bf-4336-8cca-0863d7d1cc8d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/flaskr/templates/customers/conditions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/customers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/templates/customers/agree.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/customers/agree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/templates/customers/confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/customers/confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instance/flaskr.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/flaskr.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_updating/customers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/customers.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_updating/extract_customer_volunteer_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/extract_customer_volunteer_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_updating/insert_customers_volunteers.py" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/insert_customers_volunteers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_updating/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_updating/volunteers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/volunteers.csv" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +29,15 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
   <component name="ProjectId" id="1ZTG31PbPEq3y8AII10DiRvlnOv" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flaskr" />
+    <property name="last_opened_file_path" value="C:/Program Files/Git/cmd/git.exe" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -53,5 +71,16 @@
       <updated>1584855468517</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
