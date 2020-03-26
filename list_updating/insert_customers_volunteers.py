@@ -33,6 +33,10 @@ with open('list_updating/customers.csv') as csvfile:
         gender = row[7]
         language = row[8]
         if row[9] == 'Yes':
+            priority = 1
+        else:
+            priority = 0
+        if row[10] == 'Yes':
             longterm = 1
         else:
             longterm = 0
@@ -44,9 +48,9 @@ with open('list_updating/customers.csv') as csvfile:
                 'SELECT id FROM customer WHERE (email = ? AND served = ?)', (email, 0,)
         ).fetchone() is None:
             db.execute(
-                'INSERT INTO customer (name, assistancetype, neighborhood, latlng, email, phone, preference, gender, language, longterm, payment, served) '
-                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                (name, type_of_assistance, neighborhood, lat_lng, email, phone, preference, gender, language, longterm, payment, served)
+                'INSERT INTO customer (name, assistancetype, neighborhood, latlng, email, phone, preference, gender, language, priority, longterm, payment, served) '
+                'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                (name, type_of_assistance, neighborhood, lat_lng, email, phone, preference, gender, language, priority, longterm, payment, served)
             )
 
             connection.commit()

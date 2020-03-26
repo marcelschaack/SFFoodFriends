@@ -14,6 +14,7 @@ phone TEXT NOT NULL,
 preference INTEGER,
 gender TEXT NOT NULL,
 language TEXT,
+priority TEXT,
 longterm INTEGER,
 payment INTEGER,
 served INTEGER

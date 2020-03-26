@@ -1,6 +1,8 @@
 from flask import (Blueprint, flash, redirect, render_template, request, url_for, Flask)
 from flaskr.db import get_db
 
+import PyPDF2
+
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -17,10 +19,11 @@ port = 465  # For SSL
 password = 'Helping123!'
 sender_email = "sffoodfriends@gmail.com"
 
-distance_weight = 0.3
-gender_weight = 0.2
-long_term_weight = 0.3
-language_weight = 0.2
+distance_weight = 0.4
+gender_weight = 0.15
+priority_gender_weight = 0.6
+long_term_weight = 0.15
+language_weight = 0.3
 
 
 @bp.route('/')
@@ -107,7 +110,7 @@ def conditions(e_mail_vol):
         try:
             agree = int(request.form['agree'])
         except:
-            error = 'Please select yes or no.'
+            error = 'You must agree to the terms and conditions to continue.'
 
         if error is None and agree == 1:
             db.execute(
@@ -119,13 +122,19 @@ def conditions(e_mail_vol):
 
             return redirect(url_for('customers.matching', e_mail_vol=e_mail_vol))
 
-        elif agree == 0:
-            error = 'You must accept the conditions to continue.'
-
         flash(error)
         return redirect(request.url)
 
     return render_template('customers/conditions.html')
+
+
+@bp.route('/terms-conditions')
+def terms_conditions():
+    pdf = PyPDF2.PdfFileReader('flaskr/static/Protocol_Volunteer.pdf')
+    #response = make_response(pdf.output(dest='S').encode('latin-1'))
+    #response.headers.set('Content-Disposition', 'attachment', 'terms_and_conditions' + '.pdf')
+    #response.headers.set('Content-Type', 'application/pdf')
+    return pdf
 
 
 @bp.route('/matching/<e_mail_vol>', methods=('GET', 'POST'))
@@ -149,7 +158,10 @@ def matching(e_mail_vol):
 
         if dist > 1:
             continue
-        if customer['language'] in volunteer['language'].split('+'):
+
+        if customer['language'] is None:
+            language = 0.5
+        elif customer['language'] in volunteer['language'].split('+'):
             language = 1
         else:
             language = 0
@@ -165,7 +177,10 @@ def matching(e_mail_vol):
         else:
             long_term = 0.5
 
-        score = (1 - dist) * distance_weight + gendermatch * gender_weight + long_term * long_term_weight + language * language_weight
+        if customer['priority'] == 1:
+            score = (1 - dist) * distance_weight + gendermatch * priority_gender_weight + long_term * long_term_weight + language * language_weight
+        else:
+            score = (1 - dist) * distance_weight + gendermatch * gender_weight + long_term * long_term_weight + language * language_weight
         scores.append(score)
 
     if len(scores) == 0:
@@ -239,79 +254,79 @@ def matching(e_mail_vol):
                 message_cust["To"] = email_cust
 
                 text_cust_email = """\
-                Dear {},
+Dear {},
 
-                You just received your match!
+You just received your match!
 
-                Here you will get your match’s name, email, and phone number. 
-                Please contact your match to coordinate your delivery. 
-                They will have also received your information.
+Here you will get your volunteer’s name, email, and phone number. 
+Your volunteer will contact you to coordinate your delivery. 
 
-                We want to encourage community support and trusting, lasting relationships. 
-                If you can, it would be great if you could remain as a point of support for the person in need. 
-                For example, if elderly, you can have check in calls to make sure they are okay. 
+We want to encourage community support and trusting, lasting relationships. 
+The person you are matched with is someone within your community and neighborhood. 
+They might even be right next door! If you have any worries, do not hesitate to contact us.
+Please remember we have your health as our top priority. 
 
-                Please remember the protocol you agreed to when signing up.
+To ensure this, follow the CDC guidelines and remember to wash your hands and wipe your delivered items upon receipt. 
 
-                You can also find the CDC guidelines here: https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html
+CDC guidelines: https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html
 
-                Thank you so much for signing up and helping your community!
+Thank you so much for signing up!
 
-                Your volunteer:
-                Name: {}
-                Phone number: {}
-                Email: {}
+Your volunteer!
+Name: {}
+Phone number: {}
+Email: {}
 
-                Sincerely,
-                SF FoodFriends
+Sincerely,
+SF FoodFriends
 
-                Our phone number: (415)-636-6068
+Our phone number: (415)-636-6068
 
 
 
-                This match program is being organized by private citizens for the benefit of those in our community. 
-                By completing the sign up form to be matched you agree that you accept all risk and responsibility and further hold any facilitator associated with SF Food Friends harmless. 
-                For any additional questions, please contact SFFoodFriends@gmail.com. (415-636-6068) 
+This match program is being organized by private citizens for the benefit of those in our community. 
+By completing the sign up form to be matched you agree that you accept all risk and responsibility and further hold any facilitator associated with SF Food Friends harmless. 
+For any additional questions, please contact SFFoodFriends@gmail.com. (415-636-6068) 
 
-                """
+"""
 
                 text_vol_email = """\
-                Dear {},
+Dear {},
 
-                You just received your match!
+You just received your match!
 
-                Here you will get your match’s name, email, and phone number. 
-                Please contact your match to coordinate your delivery. 
-                They will have also received your information.
+Here you will get your match’s name, email, and phone number. 
+Please contact your match to coordinate your delivery. 
+They will have also received your information.
 
-                We want to encourage community support and trusting, lasting relationships. 
-                If you can, it would be great if you could remain as a point of support for the person in need. 
-                For example, if elderly, you can have check in calls to make sure they are okay. 
+We want to encourage community support and trusting, lasting relationships. 
+If you can, it would be great if you could remain as a point of support for the person in need. 
+For example, if elderly, you can have check in calls to make sure they are okay. 
 
-                Please remember the protocol you agreed to when signing up.
+Please remember the protocol you agreed to when signing up.
 
-                You can also find the CDC guidelines here: https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html
+You can also find the CDC guidelines here: https://www.cdc.gov/coronavirus/2019-ncov/prepare/prevention.html
 
-                Thank you so much for signing up and helping your community!
+Thank you so much for signing up and helping your community!
 
-                Name: {}
-                Type of assistance: {}
-                Phone number: {}
-                Email: {}
-                Contact Preference: {}
+Name: {}
+Type of assistance: {}
+Phone number: {}
+Email: {}
+Contact Preference: {}
 
-                Sincerely,
-                SF FoodFriends
+Sincerely,
+SF FoodFriends
 
-                Our phone number: (415)-636-6068
+Our phone number: (415)-636-6068
 
 
 
-                This match program is being organized by private citizens for the benefit of those in our community. 
-                By completing the sign up form to be matched you agree that you accept all risk and responsibility and further hold any facilitator associated with SF Food Friends harmless. 
-                For any additional questions, please contact SFFoodFriends@gmail.com. (415-636-6068)
+This match program is being organized by private citizens for the benefit of those in our community. 
+By completing the sign up form to be matched you agree that you accept all risk and responsibility and further hold any facilitator associated with SF Food Friends harmless. 
+For any additional questions, please contact SFFoodFriends@gmail.com. (415-636-6068)
 
-                """
+"""
 
                 text_cust_email = text_cust_email.format(name_cust, name_vol, phone_vol, email_vol)
                 part1 = MIMEText(text_cust_email, "plain")

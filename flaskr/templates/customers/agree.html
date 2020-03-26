@@ -6,15 +6,16 @@
 
 {% block content %}
     {% if match == 1 %}
+    <div> We will also send an email with the contact details to you once you agree.</div><br>
     <div>
     <table>
-    <tr>
-    <th>Name</th>
-    <th>{{result[0]}}</th>
+  <tr>
+    <td>Name</td>
+    <td>{{result[0]}}</td>
   </tr>
   <tr>
-    <th>Assistance Type Needed</th>
-    <th>{{result[1]}}</th>
+    <td>Assistance Needed</td>
+    <td>{{result[1]}}</td>
   </tr>
   <tr>
     <td>Neighborhood</td>

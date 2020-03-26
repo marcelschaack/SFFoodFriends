@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1a6be1f-f5bf-4336-8cca-0863d7d1cc8d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/flaskr/templates/customers/conditions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flaskr/static/Protocol_Volunteer.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/customers.py" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/customers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flaskr/templates/customers/agree.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/customers/agree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flaskr/templates/customers/confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/customers/confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flaskr/templates/customers/conditions.html" beforeDir="false" afterPath="$PROJECT_DIR$/flaskr/templates/customers/conditions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instance/flaskr.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/flaskr.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list_updating/customers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/customers.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_updating/extract_customer_volunteer_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/extract_customer_volunteer_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list_updating/insert_customers_volunteers.py" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/insert_customers_volunteers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list_updating/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_updating/volunteers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list_updating/volunteers.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +38,12 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\schaa\OneDrive\Documents\GitHub\SFFoodFriends\list_updating" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\schaa\OneDrive\Documents\GitHub\SFFoodFriends\flaskr" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\schaa\OneDrive\Documents\GitHub\SFFoodFriends\flaskr\static\js" />
+      <recent name="C:\Users\schaa\OneDrive\Documents\GitHub\SFFoodFriends\list_updating" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -77,7 +76,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
