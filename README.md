@@ -1,5 +1,5 @@
-## SFFoodFriends
-# Helping to match shoppers and people in need
+# SFFoodFriends
+## Helping to match shoppers and people in need
 
 Thanks for your interest in SF Food Friends and in recreating our concept.
 
